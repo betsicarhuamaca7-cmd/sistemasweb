@@ -1,384 +1,420 @@
 <!DOCTYPE html>
 
-<html lang="es"><head>
+<html class="dark" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Software Agency - Soluciones Digitales Listas para Usar</title>
-<!-- Tailwind CSS v3 CDN -->
+<title>NYBIX | Sistemas a Medida</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Alpine.js for interactivity -->
-<script defer="" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<style data-purpose="typography">
-        body {
-            font-family: 'Inter', sans-serif;
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#000000",
+                        "outline": "#777575",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary": "#005d63",
+                        "on-background": "#ffffff",
+                        "on-secondary-container": "#d2d0cf",
+                        "on-error": "#490006",
+                        "secondary-container": "#474746",
+                        "surface-container-high": "#201f1f",
+                        "primary-container": "#6c9fff",
+                        "on-surface-variant": "#adaaaa",
+                        "primary-fixed-dim": "#5191ff",
+                        "on-tertiary-fixed-variant": "#005e64",
+                        "surface-container-low": "#131313",
+                        "tertiary-container": "#00eefc",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "tertiary-fixed-dim": "#00deec",
+                        "primary": "#85adff",
+                        "on-secondary": "#525151",
+                        "surface-container": "#1a1919",
+                        "surface": "#0e0e0e",
+                        "background": "#0e0e0e",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "error": "#ff716c",
+                        "inverse-surface": "#fcf8f8",
+                        "on-tertiary-container": "#005359",
+                        "on-primary": "#002c65",
+                        "on-secondary-fixed": "#403f3f",
+                        "inverse-on-surface": "#565554",
+                        "tertiary": "#8ff5ff",
+                        "tertiary-dim": "#00deec",
+                        "surface-variant": "#262626",
+                        "surface-tint": "#85adff",
+                        "on-primary-fixed-variant": "#002a61",
+                        "surface-container-lowest": "#000000",
+                        "secondary": "#e5e2e1",
+                        "surface-bright": "#2c2c2c",
+                        "on-error-container": "#ffa8a3",
+                        "on-tertiary-fixed": "#003f43",
+                        "outline-variant": "#494847",
+                        "error-dim": "#d7383b",
+                        "on-primary-container": "#00214f",
+                        "on-surface": "#ffffff",
+                        "primary-fixed": "#6c9fff",
+                        "error-container": "#9f0519",
+                        "inverse-primary": "#005bc2",
+                        "secondary-dim": "#d6d4d3",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-highest": "#262626",
+                        "tertiary-fixed": "#00eefc",
+                        "primary-dim": "#0070eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
         }
-    </style>
-<style data-purpose="custom-layout">
+    </script>
+<style>
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(32, 31, 31, 0.6);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(133, 173, 255, 0.1);
         }
-        .hero-gradient {
-            background: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15) 0%, rgba(10, 10, 10, 1) 70%);
+        .glow-blue {
+            filter: blur(80px);
+            background: radial-gradient(circle, rgba(0, 112, 235, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
         }
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        .glow-effect {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .text-gradient {
-            background: linear-gradient(to bottom right, #fff 40%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
         }
     </style>
 <style>
-        body {
-            min-height: max(884px, 100dvh);
-            background-color: #0a0a0a;
-        }
-    </style>
-</head>
-<body class="text-slate-300 antialiased">
-<!-- BEGIN: MainHeader -->
-<header class="sticky top-0 z-40 w-full bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
-<div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary-dim selection:text-white">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 py-4">
 <div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
+<span class="material-symbols-outlined text-blue-500 text-2xl">rocket_launch</span>
+<span class="text-2xl font-black tracking-tighter text-white uppercase italic font-headline">NYBIX</span>
 </div>
-<span class="text-xl font-extrabold tracking-tight text-white">SOFT<span class="text-blue-500">AGENCY</span></span>
-</div>
-<nav class="hidden md:flex gap-8 font-medium text-slate-400">
-<a class="hover:text-blue-400 transition-colors" href="#services">Servicios</a>
-<a class="hover:text-blue-400 transition-colors" href="#about">Nosotros</a>
-<a class="hover:text-blue-400 transition-colors" href="#testimonials">Testimonios</a>
+<button class="bg-primary-dim text-white px-5 py-2 rounded-xl text-sm font-bold tracking-tight scale-95 active:opacity-80 transition-all">
+            Contactar
+        </button>
 </nav>
-<div class="w-[40px] md:hidden"></div>
-</div>
-</header>
-<!-- END: MainHeader -->
-<!-- BEGIN: HeroSection -->
-<section class="hero-gradient overflow-hidden relative pt-16 pb-8 md:pt-32 md:pb-12">
-<div class="glow-effect top-0 left-1/4"></div>
-<div class="container mx-auto px-4 text-center relative z-10">
-<h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Tu Tienda Digital Lista <br class="hidden md:block"/> <span class="text-blue-500">Para Vender Hoy Mismo</span>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 px-6 overflow-hidden">
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-full h-[500px] glow-blue -z-10"></div>
+<div class="max-w-md mx-auto text-center space-y-6">
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold tracking-tight leading-tight text-white">
+                TU SISTEMA A MEDIDA <span class="text-primary-dim">YA MISMO</span>
 </h1>
-<p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            Lanza tu negocio online con nuestras soluciones listas para usar. Sin complicaciones técnicas, sin saber programar y con soporte experto.
-        </p>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                Automatiza, organiza y escala tu negocio con tecnología hecha a medida.
+            </p>
+<!-- Quick Filter -->
+<div class="bg-surface-container-low p-1.5 rounded-full flex gap-1 items-center justify-between border border-outline-variant/20 shadow-lg">
+<button class="flex-1 py-2 px-3 rounded-full text-xs font-bold text-white bg-surface-container-high transition-all">Empresa</button>
+<button class="flex-1 py-2 px-3 rounded-full text-xs font-medium text-on-surface-variant hover:text-white transition-all">Multiempresa</button>
+<button class="flex-1 py-2 px-3 rounded-full text-xs font-medium text-on-surface-variant hover:text-white transition-all">Independiente</button>
+</div>
+<div class="flex flex-col gap-4 pt-4">
+<button class="w-full bg-gradient-to-r from-primary-dim to-primary text-white py-4 rounded-xl font-bold text-lg shadow-[0_0_20px_rgba(0,112,235,0.3)] active:scale-[0.98] transition-all">
+                    Quiero mi sistema
+                </button>
+<button class="w-full flex items-center justify-center gap-2 bg-surface-container-high text-white py-4 rounded-xl font-semibold border border-outline-variant/30 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined fill-icon text-green-400" style="font-variation-settings: 'FILL' 1;">chat</span>
+                    Escríbeme ahora
+                </button>
+</div>
 </div>
 </section>
-<!-- END: HeroSection -->
-<!-- BEGIN: ServicesSection -->
-<section class="relative pt-8 pb-20" id="services">
-<div class="glow-effect bottom-0 right-0"></div>
-<div class="container mx-auto px-4">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nuestros Planes y Catálogos</h2>
-<p class="text-slate-500">Escoge la solución que mejor se adapte a tu modelo de negocio.</p>
+<!-- Services Section -->
+<section class="py-16 px-6 space-y-12">
+<div class="text-center">
+<h2 class="text-3xl font-headline font-bold text-white">Soluciones Digitales</h2>
+<div class="w-12 h-1 bg-primary-dim mx-auto mt-4 rounded-full"></div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- CATALOGO WHATSAPP CARD ($5) -->
-<div class="pricing-card glass-card rounded-3xl p-8 flex flex-col shadow-2xl" x-data="{ openDemo: false }">
-<div class="mb-6">
-<h3 class="text-2xl font-extrabold mb-2 uppercase tracking-wide text-white">Catálogo WhatsApp</h3>
-<div class="flex items-baseline gap-1">
-<span class="text-4xl font-black text-blue-500">$5</span>
-<span class="text-slate-400 font-medium">USD / primer mes</span>
+<!-- Card A: ELITMASTER ACADEMY -->
+<div class="glass-card rounded-2xl p-8 space-y-6 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="text-xl font-bold font-headline text-white tracking-tight">ELITMASTER ACADEMY</h3>
+<p class="text-primary-dim text-sm font-semibold uppercase tracking-widest">Mique LMS</p>
 </div>
-<p class="text-sm text-slate-500 mt-1 italic">Renovación: $8 USD</p>
+<div class="bg-primary-dim/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary-dim">school</span>
 </div>
-<div class="space-y-4 mb-8 flex-grow">
-<ul class="space-y-3 text-sm text-slate-400">
-<li class="flex items-start gap-2"><span class="text-blue-500">🔹</span> PLAN MENSUAL</li>
-<li class="flex items-start gap-2"><span class="text-blue-500 text-xs">🌐</span> Subdominio + hosting GRATIS siempre</li>
-<li class="pl-6 text-xs text-slate-500">mique.host / mique.shop</li>
-<li class="flex items-start gap-2 font-bold text-blue-400"><span class="text-blue-400">🔹</span> PLAN ANUAL</li>
-<li class="flex items-start gap-2 text-slate-300 font-semibold">$25 USD primer año / $50 USD renovación</li>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center border border-outline-variant/10">
+<p class="text-[10px] text-on-surface-variant font-medium">Mensual</p>
+<p class="text-white font-bold text-lg">$20</p>
+</div>
+<div class="bg-primary-dim/10 p-3 rounded-xl text-center border border-primary/20">
+<p class="text-[10px] text-primary-dim font-bold">Anual</p>
+<p class="text-white font-bold text-lg">$99</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center border border-outline-variant/10">
+<p class="text-[10px] text-on-surface-variant font-medium">Código</p>
+<p class="text-white font-bold text-lg">$270</p>
+</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-dim text-lg">check_circle</span>
+                    Cursos ilimitados
+                </li>
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-dim text-lg">check_circle</span>
+                    Marketplace Integrado
+                </li>
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-dim text-lg">check_circle</span>
+                    Certificados Digitales
+                </li>
 </ul>
-<div class="p-4 bg-blue-900/20 border border-blue-500/20 rounded-xl">
-<p class="text-xs font-bold text-blue-400 uppercase mb-1">🔥 CÓDIGO FUENTE (OFERTA)</p>
-<p class="text-lg font-bold text-white">$70 USD <span class="text-xs line-through text-slate-600">$120 USD</span></p>
+<button class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-primary transition-all">
+                Comprar Ahora
+            </button>
+</div>
+<!-- Card B: CATÁLOGO WHATSAPP -->
+<div class="glass-card rounded-2xl p-8 space-y-6 relative overflow-hidden group border-l-4 border-l-green-500/50">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="text-xl font-bold font-headline text-white tracking-tight">CATÁLOGO WHATSAPP</h3>
+<p class="text-green-400 text-sm font-semibold uppercase tracking-widest">Ventas Directas</p>
+</div>
+<div class="bg-green-400/20 p-2 rounded-lg text-green-400">
+<span class="material-symbols-outlined">shopping_bag</span>
 </div>
 </div>
-<div class="space-y-3">
-<a class="block w-full py-3 bg-white text-black text-center rounded-xl font-bold hover:bg-slate-200 transition-colors" href="https://wa.me/51925640652?text=Hola,%20estoy%20interesado%20en%20adquirir%20el%20plan%20CATÁLOGO%20WHATSAPP." target="_blank">Adquirir Ahora</a>
-<div class="relative">
-<button @click="openDemo = !openDemo" class="w-full py-2.5 bg-white/5 border border-white/10 text-white rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-sm">
-                            Ver Demo
-                            <svg :class="openDemo ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<div class="mt-2 space-y-2" x-cloak="" x-collapse="" x-show="openDemo"><div class="p-3 bg-white/5 rounded-lg mb-2 text-[11px] border border-white/5">
-<p class="text-blue-400 font-bold uppercase mb-1">Acceso Admin:</p>
-<p class="text-slate-300">User: <span class="text-white">admin@demo.com</span></p>
-<p class="text-slate-300">Pass: <span class="text-white">123456789</span></p>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Mensual</p>
+<p class="text-white font-bold text-lg">$5</p>
 </div>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://catalogopro.esmidemo.com/" target="_blank">Ver Tienda Demo</a>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://catalogopro.esmidemo.com/escritorio/" target="_blank">Ver Panel Admin</a></div>
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Anual</p>
+<p class="text-white font-bold text-lg">$25</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Código</p>
+<p class="text-white font-bold text-lg">$70</p>
 </div>
 </div>
+<div class="p-3 bg-surface-container-highest rounded-lg flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Ver Demo</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
 </div>
-<!-- CATALOGO STREAMING CARD ($8) -->
-<div class="pricing-card glass-card border-blue-600/50 ring-1 ring-blue-600/30 rounded-3xl p-8 flex flex-col shadow-2xl relative" x-data="{ openDemo: false }">
-<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase shadow-[0_0_15px_rgba(37,99,235,0.5)]">Popular</div>
-<div class="mb-6">
-<h3 class="text-2xl font-extrabold mb-2 uppercase tracking-wide text-white">Catalogo Streaming</h3>
-<div class="flex items-baseline gap-1">
-<span class="text-4xl font-black text-blue-500">$8</span>
-<span class="text-slate-400 font-medium">USD / primer mes</span>
+<button class="w-full py-4 bg-primary-dim text-white font-bold rounded-xl active:scale-95 transition-all">
+                Comprar Ahora
+            </button>
 </div>
-<p class="text-sm text-slate-500 mt-1 italic">Renovación: $10 USD</p>
+<!-- Card C: CATÁLOGO STREAMING -->
+<div class="glass-card rounded-2xl p-8 space-y-6 relative overflow-hidden group border-l-4 border-l-purple-500/50">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="text-xl font-bold font-headline text-white tracking-tight">CATÁLOGO STREAMING</h3>
+<p class="text-purple-400 text-sm font-semibold uppercase tracking-widest">Entertainment Pro</p>
 </div>
-<div class="space-y-4 mb-8 flex-grow">
-<ul class="space-y-3 text-sm text-slate-400">
-<li class="flex items-start gap-2"><span class="text-blue-500">🔹</span> PLAN MENSUAL</li>
-<li class="flex items-start gap-2"><span class="text-blue-500 text-xs">🌐</span> Subdominio + hosting GRATIS siempre</li>
-<li class="pl-6 text-xs text-slate-500">mique.host / mique.shop</li>
-<li class="flex items-start gap-2 font-bold text-blue-400"><span class="text-blue-400">🔹</span> PLAN ANUAL</li>
-<li class="flex items-start gap-2 text-slate-300 font-semibold">$35 USD primer año / $70 USD renovación</li>
-</ul>
-<div class="p-4 bg-blue-900/20 border border-blue-500/20 rounded-xl">
-<p class="text-xs font-bold text-blue-400 uppercase mb-1">🔥 CÓDIGO FUENTE (OFERTA)</p>
-<p class="text-lg font-bold text-white">$99 USD <span class="text-xs line-through text-slate-600">$150 USD</span></p>
+<div class="bg-purple-400/20 p-2 rounded-lg text-purple-400">
+<span class="material-symbols-outlined">play_circle</span>
 </div>
 </div>
-<div class="space-y-3">
-<a class="block w-full py-3 bg-blue-600 text-white text-center rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-[0_0_20px_rgba(37,99,235,0.3)]" href="https://wa.me/51925640652?text=Hola,%20estoy%20interesado%20en%20adquirir%20el%20plan%20CATALOGO%20STREAMING." target="_blank">Adquirir Ahora</a>
-<div class="relative">
-<button @click="openDemo = !openDemo" class="w-full py-2.5 bg-white/5 border border-white/10 text-white rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-sm">
-                            Ver Demo
-                            <svg :class="openDemo ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<div class="mt-2 space-y-2" x-cloak="" x-collapse="" x-show="openDemo"><div class="p-3 bg-white/5 rounded-lg mb-2 text-[11px] border border-white/5">
-<p class="text-blue-400 font-bold uppercase mb-1">Acceso Admin:</p>
-<p class="text-slate-300">User: <span class="text-white">admin@demo.com</span></p>
-<p class="text-slate-300">Pass: <span class="text-white">123456789</span></p>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Mensual</p>
+<p class="text-white font-bold text-lg">$8</p>
 </div>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://catalogo-php.esmidemo.com/" target="_blank">Ver Tienda Demo</a>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://catalogo-php.esmidemo.com/admin" target="_blank">Ver Panel Admin</a></div>
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Anual</p>
+<p class="text-white font-bold text-lg">$35</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl text-center">
+<p class="text-[10px] text-on-surface-variant">Código</p>
+<p class="text-white font-bold text-lg">$99</p>
 </div>
 </div>
+<div class="p-3 bg-surface-container-highest rounded-lg flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Demo en vivo</span>
+<span class="material-symbols-outlined text-sm">tv</span>
 </div>
-<!-- TIENDA APP CARD ($10) -->
-<div class="pricing-card glass-card rounded-3xl p-8 flex flex-col shadow-xl" x-data="{ openDemo: false }">
-<div class="mb-6">
-<h3 class="text-2xl font-extrabold mb-2 uppercase tracking-wide text-white">Tienda APP</h3>
-<div class="flex items-baseline gap-1">
-<span class="text-4xl font-black text-blue-500">$10</span>
-<span class="text-slate-400 font-medium">USD / primer mes</span>
-</div>
-<p class="text-sm text-slate-500 mt-1 italic">Renovación: $15 USD</p>
-</div>
-<div class="space-y-4 mb-8 flex-grow">
-<ul class="space-y-3 text-sm text-slate-400">
-<li class="flex items-start gap-2"><span class="text-blue-500">🔹</span> PLAN MENSUAL</li>
-<li class="flex items-start gap-2"><span class="text-blue-500 text-xs">🌐</span> Subdominio + hosting GRATIS siempre</li>
-<li class="pl-6 text-xs text-slate-500">mique.host / mique.shop</li>
-<li class="flex items-start gap-2 font-bold text-blue-400"><span class="text-blue-400">🔹</span> PLAN ANUAL</li>
-<li class="flex items-start gap-2 text-slate-300 font-semibold">$50 USD primer año / $99 USD renovación</li>
-</ul>
-<div class="p-4 bg-blue-900/20 border border-blue-500/20 rounded-xl">
-<p class="text-xs font-bold text-blue-400 uppercase mb-1">🔥 CÓDIGO FUENTE (OFERTA)</p>
-<p class="text-lg font-bold text-white">$150 USD <span class="text-xs line-through text-slate-600">$350 USD</span></p>
-</div>
-</div>
-<div class="space-y-3">
-<a class="block w-full py-3 bg-white text-black text-center rounded-xl font-bold hover:bg-slate-200 transition-colors" href="https://wa.me/51925640652?text=Hola,%20estoy%20interesado%20en%20adquirir%20el%20plan%20TIENDA%20APP." target="_blank">Adquirir Ahora</a>
-<div class="relative">
-<button @click="openDemo = !openDemo" class="w-full py-2.5 bg-white/5 border border-white/10 text-white rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-sm">
-                            Ver Demo
-                            <svg :class="openDemo ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<div class="mt-2 space-y-2" x-cloak="" x-collapse="" x-show="openDemo"><div class="p-3 bg-white/5 rounded-lg mb-2 text-[11px] border border-white/5">
-<p class="text-blue-400 font-bold uppercase mb-1">Acceso Admin:</p>
-<p class="text-slate-300">User: <span class="text-white">admin@demo.com</span></p>
-<p class="text-slate-300">Pass: <span class="text-white">123456789</span></p>
-</div>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://tienda-app.esmidemo.com" target="_blank">Ver Tienda Demo</a>
-<a class="block w-full py-2 bg-blue-600/10 border border-blue-500/20 text-blue-400 text-center rounded-lg text-xs font-bold hover:bg-blue-600/20 transition-colors" href="https://tienda-app.esmidemo.com" target="_blank">Ver Panel Admin</a></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Demo Section -->
+<button class="w-full py-4 bg-primary-dim text-white font-bold rounded-xl active:scale-95 transition-all">
+                Comprar Ahora
+            </button>
 </div>
 </section>
-<!-- END: ServicesSection -->
-<!-- BEGIN: CustomServiceCTA -->
-<section class="py-8 bg-[#0a0a0a]">
-<div class="container mx-auto px-4">
-<div class="max-w-4xl mx-auto p-6 rounded-2xl border border-white/5 bg-white/5 text-center">
-<div class="text-xs md:text-sm text-slate-500 space-y-2">
-<p>• * Renovación dominio anual: desde $3 USD a $13.57 USD según extensión.</p>
-<p>• * Renovación hosting anual: $46.80 USD.</p>
+<!-- Benefits Bento -->
+<section class="py-16 px-6 space-y-8 bg-surface-container-lowest">
+<h2 class="text-2xl font-headline font-bold text-center">Beneficios Premium</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-2xl space-y-3">
+<span class="material-symbols-outlined text-blue-400">settings_suggest</span>
+<h4 class="font-bold text-sm">Automatización</h4>
 </div>
+<div class="glass-card p-6 rounded-2xl space-y-3">
+<span class="material-symbols-outlined text-blue-400">monitoring</span>
+<h4 class="font-bold text-sm">Control total</h4>
 </div>
-</div>
-</section><section class="py-12 bg-blue-600">
-<div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+<div class="glass-card p-6 rounded-2xl space-y-3 col-span-2 flex items-center justify-between">
 <div>
-<h2 class="text-2xl md:text-3xl font-bold mb-2 text-white">¿Te gustaría consultar algún otro servicio?</h2>
-<p class="text-white/80">Escríbeme y cotiza tu proyecto personalizado con nosotros.</p>
+<h4 class="font-bold text-lg">Escalabilidad IA</h4>
+<p class="text-xs text-on-surface-variant">Listos para el futuro</p>
 </div>
-<a class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-slate-100 transition-all flex items-center gap-2" href="https://wa.me/51925640652?text=Hola,%20quisiera%20cotizar%20un%20servicio%20personalizado." target="_blank">
-<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.63 1.433h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
-            Escríbeme Ahora
-        </a>
+<span class="material-symbols-outlined text-4xl text-blue-400">psychology</span>
 </div>
-</section>
-<!-- END: CustomServiceCTA -->
-<!-- BEGIN: AboutUsSection -->
-<section class="py-20 relative overflow-hidden" id="about">
-<div class="glow-effect top-1/2 left-0 -translate-y-1/2 opacity-50"></div>
-<div class="container mx-auto px-4">
-<div class="flex flex-col md:flex-row items-center gap-12">
-<div class="md:w-1/2">
-<div class="inline-block px-4 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-bold uppercase mb-4 border border-blue-500/20">Sobre Nosotros</div>
-<h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">Expertos en Desarrollo de Software</h2>
-<p class="text-lg text-slate-400 mb-6 leading-relaxed">
-                    Contamos con un equipo de desarrolladores con más de <span class="font-bold text-white">8 años de experiencia</span>. No solo vendemos plantillas, creamos soluciones tecnológicas que impulsan negocios.
-                </p>
-<ul class="space-y-4 mb-8"><li class="flex items-center gap-3">
-<div class="w-6 h-6 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center text-blue-400 text-[10px]">✓</div>
-<span class="text-slate-300">Apps móviles personalizadas</span>
-</li>
-<li class="flex items-center gap-3">
-<div class="w-6 h-6 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center text-blue-400 text-[10px]">✓</div>
-<span class="text-slate-300">Sistemas empresariales con IA integrada</span>
-</li>
-<li class="flex items-center gap-3">
-<div class="w-6 h-6 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center text-blue-400 text-[10px]">✓</div>
-<span class="text-slate-300">CRM para WhatsApp</span>
-</li>
-<li class="flex items-center gap-3">
-<div class="w-6 h-6 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center text-blue-400 text-[10px]">✓</div>
-<span class="text-slate-300">Automatizaciones de procesos complejos</span>
-</li></ul>
+<div class="glass-card p-6 rounded-2xl space-y-3">
+<span class="material-symbols-outlined text-blue-400">verified_user</span>
+<h4 class="font-bold text-sm">Seguridad</h4>
 </div>
-<div class="md:w-1/2 grid grid-cols-2 gap-4">
-<div class="bg-blue-600 p-8 rounded-3xl text-white flex flex-col justify-center items-center text-center shadow-[0_0_20px_rgba(37,99,235,0.2)]">
-<span class="text-4xl font-bold mb-2">500+</span>
-<span class="text-sm opacity-80 uppercase tracking-widest">Proyectos</span>
-</div>
-<div class="glass-card p-8 rounded-3xl flex flex-col justify-center items-center text-center">
-<span class="text-4xl font-bold mb-2 text-blue-500">8+</span>
-<span class="text-sm text-slate-500 uppercase tracking-widest">Años Exp.</span>
-</div>
-<div class="glass-card p-8 rounded-3xl flex flex-col justify-center items-center text-center">
-<span class="text-4xl font-bold mb-2 text-blue-500">100%</span>
-<span class="text-sm text-slate-500 uppercase tracking-widest">Seguro</span>
-</div>
-<a class="bg-white p-8 rounded-3xl text-black flex flex-col justify-center items-center text-center hover:bg-slate-200 transition-colors" href="https://wa.me/51925640652?text=Hola,%20necesito%20soporte%20técnico" target="_blank">
-<span class="text-4xl font-bold mb-2">24/7</span>
-<span class="text-sm opacity-80 uppercase tracking-widest font-bold">Soporte</span>
-</a>
-</div>
+<div class="glass-card p-6 rounded-2xl space-y-3">
+<span class="material-symbols-outlined text-blue-400">speed</span>
+<h4 class="font-bold text-sm">Velocidad</h4>
 </div>
 </div>
 </section>
-<!-- END: AboutUsSection -->
-<!-- BEGIN: TestimonialsSection -->
-<section class="py-20 relative" id="testimonials">
-<div class="glow-effect top-0 right-1/4 opacity-40"></div>
-<div class="container mx-auto px-4">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Lo que dicen nuestros clientes</h2>
-<div class="flex justify-center gap-1 text-yellow-500">★★★★★</div>
+<!-- About Us -->
+<section class="py-20 px-6 space-y-12">
+<div class="space-y-4">
+<h2 class="text-3xl font-headline font-extrabold text-white">Expertos en Desarrollo de Software</h2>
+<p class="text-on-surface-variant leading-relaxed">Transformamos ideas complejas en realidades digitales escalables con soporte continuo.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Testimonial 1 -->
-<div class="p-8 glass-card rounded-3xl">
-<div class="flex gap-1 text-yellow-500 mb-4">★★★★★</div>
-<p class="text-slate-400 italic mb-6">"Increíble servicio. Compré el Catálogo de Streaming y en menos de 24 horas ya estaba funcionando. Muy intuitivo para cargar mis productos."</p>
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center font-bold text-blue-400">RC</div>
-<div>
-<p class="font-bold text-sm text-white">Ricardo C.</p>
-<p class="text-xs text-slate-500">Emprendedor Digital</p>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-1">
+<p class="text-3xl font-black text-primary-dim">500+</p>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Proyectos</p>
 </div>
+<div class="space-y-1">
+<p class="text-3xl font-black text-primary-dim">6+</p>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Años exp</p>
 </div>
+<div class="space-y-1">
+<p class="text-3xl font-black text-primary-dim">100%</p>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Seguro</p>
 </div>
-<!-- Testimonial 2 -->
-<div class="p-8 glass-card rounded-3xl">
-<div class="flex gap-1 text-yellow-500 mb-4">★★★★★</div>
-<p class="text-slate-400 italic mb-6">"El soporte técnico es excelente. Me ayudaron a configurar mi dominio personalizado en minutos. La Tienda APP superó mis expectativas."</p>
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center font-bold text-blue-400">ML</div>
-<div>
-<p class="font-bold text-sm text-white">Maria L.</p>
-<p class="text-xs text-slate-500">Dueña de Boutique</p>
+<div class="space-y-1">
+<p class="text-3xl font-black text-primary-dim">24/7</p>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Soporte</p>
 </div>
 </div>
-</div>
-<!-- Testimonial 3 -->
-<div class="p-8 glass-card rounded-3xl">
-<div class="flex gap-1 text-yellow-500 mb-4">★★★★★</div>
-<p class="text-slate-400 italic mb-6">"Opté por comprar el código fuente de Catálogo WhatsApp para mi agencia y es un código muy limpio y profesional. Totalmente recomendado."</p>
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center font-bold text-blue-400">JP</div>
-<div>
-<p class="font-bold text-sm text-white">Juan Pablo S.</p>
-<p class="text-xs text-slate-500">Developer Freelance</p>
-</div>
-</div>
-</div>
+<div class="bg-surface-container p-6 rounded-2xl space-y-4 border border-outline-variant/10">
+<h4 class="font-bold text-white">Nuestra especialidad</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-high px-4 py-2 rounded-full text-xs font-medium text-blue-400">Apps Móviles</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-full text-xs font-medium text-blue-400">Sistemas IA</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-full text-xs font-medium text-blue-400">Automatización Compleja</span>
 </div>
 </div>
 </section>
-<!-- END: TestimonialsSection -->
-<!-- BEGIN: MainFooter -->
-<footer class="bg-[#050505] text-slate-500 py-12 border-t border-white/5">
-<div class="container mx-auto px-4">
-<div class="flex flex-col md:flex-row justify-between items-center border-b border-white/5 pb-8 mb-8">
-<div class="flex items-center gap-2 mb-6 md:mb-0">
-<div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
+<!-- How it works -->
+<section class="py-16 px-6 bg-surface-container-low border-y border-white/5">
+<h2 class="text-2xl font-headline font-bold text-center mb-12">Proceso de Trabajo</h2>
+<div class="relative space-y-12">
+<div class="absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-primary-dim to-transparent opacity-30"></div>
+<div class="relative pl-14 group">
+<div class="absolute left-3.5 top-0 w-5 h-5 bg-primary-dim rounded-full shadow-[0_0_15px_rgba(0,112,235,0.5)] flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">1</span>
 </div>
-<span class="text-lg font-bold text-white tracking-tight">SOFT<span class="text-blue-500">AGENCY</span></span>
+<h4 class="text-lg font-bold text-white mb-1">Analizamos</h4>
+<p class="text-sm text-on-surface-variant">Entendemos tu negocio y definimos los objetivos clave.</p>
 </div>
-<div class="flex gap-8 text-sm">
-<a class="hover:text-white transition-colors" href="#">Términos</a>
-<a class="hover:text-white transition-colors" href="#">Privacidad</a>
-<a class="hover:text-white transition-colors" href="https://wa.me/51925640652">Soporte</a>
+<div class="relative pl-14 group">
+<div class="absolute left-3.5 top-0 w-5 h-5 bg-primary-dim rounded-full shadow-[0_0_15px_rgba(0,112,235,0.5)] flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">2</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-1">Diseñamos</h4>
+<p class="text-sm text-on-surface-variant">Creamos la arquitectura y el prototipo de tu solución.</p>
+</div>
+<div class="relative pl-14 group">
+<div class="absolute left-3.5 top-0 w-5 h-5 bg-primary-dim rounded-full shadow-[0_0_15px_rgba(0,112,235,0.5)] flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">3</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-1">Implementamos</h4>
+<p class="text-sm text-on-surface-variant">Despliegue total y acompañamiento en el lanzamiento.</p>
 </div>
 </div>
-<div class="text-center text-xs opacity-30">
-            © 2023 Soft Agency. Todos los derechos reservados. Desarrollado con tecnología de vanguardia.
-        </div>
+</section>
+<!-- Interactive Survey -->
+<section class="py-20 px-6">
+<div class="glass-card p-8 rounded-[2rem] border-primary-dim/20 shadow-2xl relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-40 h-40 glow-blue"></div>
+<div class="space-y-8 relative z-10">
+<div class="space-y-2">
+<p class="text-primary-dim font-bold text-xs uppercase tracking-widest">Configurador</p>
+<h3 class="text-2xl font-headline font-extrabold text-white">¿Qué necesitas construir?</h3>
+</div>
+<!-- Step 1 -->
+<div class="space-y-4">
+<label class="text-sm font-semibold text-on-surface-variant">Paso 1: Tu necesidad</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-surface-container-high p-3 rounded-xl text-xs font-medium text-white border border-primary-dim">Ventas</button>
+<button class="bg-surface-container-high p-3 rounded-xl text-xs font-medium text-on-surface-variant border border-outline-variant/10">Cursos</button>
+<button class="bg-surface-container-high p-3 rounded-xl text-xs font-medium text-on-surface-variant border border-outline-variant/10">Gestión</button>
+<button class="bg-surface-container-high p-3 rounded-xl text-xs font-medium text-on-surface-variant border border-outline-variant/10">Otro</button>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="space-y-4">
+<label class="text-sm font-semibold text-on-surface-variant">Paso 2: Tipo de negocio</label>
+<select class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl text-sm py-3 px-4 focus:ring-primary-dim focus:border-primary-dim text-white">
+<option>Independiente</option>
+<option>Empresa</option>
+<option>Multiempresa</option>
+</select>
+</div>
+<button class="w-full py-4 bg-primary-dim text-white font-bold rounded-xl shadow-[0_10px_25px_rgba(0,112,235,0.4)]">
+                    Generar Propuesta
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-neutral-950 w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 mb-20">
+<div class="flex flex-col items-center gap-2">
+<span class="font-manrope font-bold text-white text-xl">NYBIX Digital</span>
+<p class="text-neutral-500 text-sm font-inter">© 2024 Nybix Digital. All rights reserved.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-neutral-500 text-sm font-inter hover:text-blue-400 transition-opacity" href="#">Privacidad</a>
+<a class="text-neutral-500 text-sm font-inter hover:text-blue-400 transition-opacity" href="#">Términos</a>
+<a class="text-neutral-500 text-sm font-inter hover:text-blue-400 transition-opacity" href="#">Soporte</a>
 </div>
 </footer>
-<!-- END: MainFooter -->
-<!-- BEGIN: FloatingWhatsApp -->
-<a class="floating-whatsapp bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center hover:scale-110 transition-transform active:scale-95" data-purpose="whatsapp-link" href="https://wa.me/51925640652?text=Hola,%20quisiera%20consultar%20sobre%20sus%20servicios%20de%20desarrollo." target="_blank">
-<svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.63 1.433h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
-</svg>
+<!-- WhatsApp FAB -->
+<a class="fixed bottom-24 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl z-40 active:scale-90 transition-transform" href="https://wa.me/59167424272">
+<span class="material-symbols-outlined fill-icon text-3xl" style="font-variation-settings: 'FILL' 1;">chat</span>
 </a>
-<!-- END: FloatingWhatsApp -->
+<!-- Sticky Bottom Nav (Mobile) -->
+<div class="fixed bottom-0 w-full z-50 bg-neutral-950/90 backdrop-blur-lg border-t border-white/5 px-8 py-4 flex justify-between items-center md:hidden">
+<div class="flex flex-col items-center gap-1 text-blue-400 font-bold">
+<span class="material-symbols-outlined fill-icon" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px]">Inicio</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px]">Servicios</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">rocket</span>
+<span class="text-[10px]">Escale</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-neutral-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px]">Perfil</span>
+</div>
+</div>
 </body></html>
